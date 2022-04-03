@@ -11,7 +11,7 @@ export interface IPost {
 
 export const getStaticProps = async () => {
 
-    const response = await fetch(`https://next-test-ochre-three.vercel.app/posts`);
+    const response = await fetch(`https://next-test-ochre-three.vercel.app/api/posts`);
     const posts: IPost[] | null = await response.json();
     const subtitle = String(process.env.SUBTITLE) ?? "Default Subtitle";
     //console.log(process.env.SUBTITLE)
@@ -32,6 +32,8 @@ export const getStaticProps = async () => {
 const Posts = (
     {posts, subtitle}: {posts: IPost[], subtitle: string}
     ) => {
+    console.log(subtitle)
+    console.log(posts)
     return (
         <MainLayout headTitle="Next 01 - Posts">
             <div>
