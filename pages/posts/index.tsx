@@ -12,7 +12,8 @@ export interface IPost {
 export const getStaticProps = async () => {
 
     const response = await fetch(`https://next-test-ochre-three.vercel.app/api/post`);
-    const posts: IPost[] | null = await response.json();
+    const responseJSON = await response.json();
+    const posts = responseJSON.posts;
     const subtitle = "Default Subtitle"//String(process.env.SUBTITLE) ?? "Default Subtitle";
     //console.log(process.env.SUBTITLE)
     if (!posts) {
@@ -30,10 +31,11 @@ export const getStaticProps = async () => {
 }
 
 const Posts = (
-    {posts, subtitle}: {posts: IPost[], subtitle: string}
+    {posts, subtitle}: {posts: any, subtitle: string}
     ) => {
     console.log(subtitle)
     console.log(posts)
+
     return (
         <MainLayout headTitle="Next 01 - Posts">
             <div>
@@ -42,24 +44,23 @@ const Posts = (
                     {/*subtitle*/}
                     {subtitle}
                 </h2>
-                {/*{*/}
-                {/*    posts ? (*/}
-                {/*    <div className={style.posts}>*/}
-                {/*        /!*posts*!/*/}
-                {/*        {*/}
-                {/*            posts.map(post => (*/}
-                {/*                <div key={post.id} className={style.post}>*/}
-                {/*                    /!*<p className={style.title}>{post.title}</p>*!/*/}
-                {/*                    <Link href={`/posts/${post.id}`}><a>{post.title}</a></Link>*/}
-                {/*                    /!*<p className={style.text}>{post.text}</p>*!/*/}
-                {/*                </div>*/}
-                {/*            ))*/}
-                {/*        }*/}
-                {/*    </div>*/}
-                {/*    ) : (*/}
-                {/*        <div>no posts</div>*/}
-                {/*    )*/}
-                {/*}*/}
+                {
+                    posts ? (
+                    <div className={style.posts}>
+                        {
+                            posts.map(post => (
+                                <div key={post.id} className={style.post}>
+                                    {/*<p className={style.title}>{post.title}</p>*/}
+                                    <Link href={`/posts/${post.id}`}><a>{post.title}</a></Link>
+                                    {/*<p className={style.text}>{post.text}</p>*/}
+                                </div>
+                            ))
+                        }
+                    </div>
+                    ) : (
+                        <div>no posts</div>
+                    )
+                }
             </div>
         </MainLayout>
     )
