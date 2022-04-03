@@ -32,8 +32,8 @@ export const getStaticProps = async () => {
 const Posts = (
     {posts, subtitle}: {posts: IPost[], subtitle: string}
     ) => {
-    // console.log(subtitle)
-    // console.log(posts)
+    console.log(subtitle)
+    console.log(posts)
     return (
         <MainLayout headTitle="Next 01 - Posts">
             <div>
@@ -43,7 +43,7 @@ const Posts = (
                     {subtitle}
                 </h2>
                 {
-                    posts &&
+                    posts ? (
                     <div className={style.posts}>
                         {/*posts*/}
                         {
@@ -56,6 +56,9 @@ const Posts = (
                             ))
                         }
                     </div>
+                    ) : (
+                        <div>no posts</div>
+                    )
                 }
             </div>
         </MainLayout>
