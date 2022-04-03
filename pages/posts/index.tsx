@@ -16,18 +16,19 @@ export const getStaticProps = async () => {
     //const subtitle = String(process.env.SUBTITLE) ?? "Default Subtitle";
     const subtitle = "Default Subtitle";
     //console.log(process.env.SUBTITLE)
-    if (!posts) {
-        return {
-            notFound: true,
-        }
-    } else {
-        return {
-            props: {
-                posts,
-                subtitle,
-            }
+    // if (!posts) {
+    //     return {
+    //         notFound: true,
+    //     }
+    // }
+
+    return {
+        props: {
+            posts,
+            subtitle,
         }
     }
+
 }
 
 interface IPostProps {
