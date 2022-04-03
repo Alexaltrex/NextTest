@@ -10,17 +10,21 @@ export interface IPost {
 }
 
 export const getStaticProps = async () => {
-    const response = await fetch(`https://next-test-ochre-three.vercel.app/api/post`);
+    const response = await fetch(
+        process.env.NODE_ENV === "development"
+        ? "http://localhost:3000/api/post"
+        : `https://next-test-ochre-three.vercel.app/api/post`
+    );
     const responseJSON = await response.json();
-    const posts = responseJSON.posts;
+    const posts = responseJSON//.posts;
     //const subtitle = String(process.env.SUBTITLE) ?? "Default Subtitle";
     const subtitle = "Default Subtitle";
     //console.log(process.env.SUBTITLE)
-    // if (!posts) {
-    //     return {
-    //         notFound: true,
-    //     }
-    // }
+    if (!posts) {
+        return {
+            notFound: true,
+        }
+    }
 
     return {
         props: {
