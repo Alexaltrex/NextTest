@@ -10,11 +10,11 @@ export interface IPost {
 }
 
 export const getStaticProps = async () => {
-
     const response = await fetch(`https://next-test-ochre-three.vercel.app/api/post`);
     const responseJSON = await response.json();
     const posts = responseJSON.posts;
-    const subtitle = "Default Subtitle"//String(process.env.SUBTITLE) ?? "Default Subtitle";
+    const subtitle = String(process.env.SUBTITLE) ?? "Default Subtitle";
+    //const subtitle = "Default Subtitle";
     //console.log(process.env.SUBTITLE)
     if (!posts) {
         return {
@@ -56,9 +56,7 @@ const Posts = (
                             {
                                 posts.map(post => (
                                     <div key={post.id} className={style.post}>
-                                        {/*<p className={style.title}>{post.title}</p>*/}
                                         <Link href={`/posts/${post.id}`}><a>{post.title}</a></Link>
-                                        {/*<p className={style.text}>{post.text}</p>*/}
                                     </div>
                                 ))
                             }
