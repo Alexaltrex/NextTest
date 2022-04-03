@@ -2,6 +2,7 @@ import {GetStaticProps, GetStaticPropsContext, InferGetStaticPropsType, NextPage
 import {MainLayout} from "../../components/layouts/MainLayout";
 import style from "./posts.module.scss"
 import Link from "next/link";
+import {charactersAPI, ICharactersData} from "../../axios/api";
 
 export interface IPost {
     id: string
@@ -17,6 +18,9 @@ export const getStaticProps = async () => {
     );
     const responseJSON = await response.json();
     const posts = responseJSON//.posts;
+
+    const charactersData = await charactersAPI.getCharacters();
+
     const subtitle = String(process.env.SUBTITLE) ?? "Default Subtitle";
     //const subtitle = "Default Subtitle";
     //console.log(process.env.SUBTITLE)
@@ -30,6 +34,7 @@ export const getStaticProps = async () => {
         props: {
             posts,
             subtitle,
+            charactersData
         }
     }
 
@@ -38,14 +43,20 @@ export const getStaticProps = async () => {
 interface IPostProps {
     posts: IPost[]
     subtitle: string
+    charactersData: ICharactersData
 }
 
 
 const Posts = (
-    {posts, subtitle}: IPostProps
+    {
+        posts,
+        subtitle,
+        charactersData
+    }: IPostProps
 ) => {
-    console.log(subtitle)
-    console.log(posts)
+    console.log(subtitle);
+    console.log(posts);
+    console.log(charactersData);
 
     return (
         <MainLayout headTitle="Next 01 - Posts">
