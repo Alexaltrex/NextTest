@@ -13,7 +13,7 @@ export const getStaticProps = async () => {
 
     const response = await fetch(`https://next-test-ochre-three.vercel.app/api/post`);
     const posts: IPost[] | null = await response.json();
-    const subtitle = String(process.env.SUBTITLE) ?? "Default Subtitle";
+    const subtitle = "Default Subtitle"//String(process.env.SUBTITLE) ?? "Default Subtitle";
     //console.log(process.env.SUBTITLE)
     if (!posts) {
         return {
