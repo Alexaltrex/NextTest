@@ -11,7 +11,8 @@ export interface IPost {
 
 export const getStaticProps = async () => {
     const response = await fetch(`${process.env.API_DEV}/posts`);
-    const posts: IPost[] | null = await response.json();
+    //const posts: IPost[] | null = await response.json();
+    const posts: IPost[] = [];
     const subtitle = String(process.env.SUBTITLE) ?? "Default Subtitle";
     console.log(process.env.SUBTITLE)
     if (!posts) {

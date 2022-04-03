@@ -11,6 +11,7 @@ import {MainLayout} from "../../components/layouts/MainLayout";
 import {IPost} from "./index";
 import {ParsedUrlQuery} from "querystring";
 import Link from "next/link";
+import {postsMock} from "../../db/posts.mock";
 
 interface IParams extends ParsedUrlQuery {
     id: string
@@ -18,8 +19,8 @@ interface IParams extends ParsedUrlQuery {
 
 // 1 - getStaticPaths + getStaticProps
 export const getStaticPaths: GetStaticPaths = async () => {
-    const response = await fetch(`${process.env.API_DEV}/posts`);
-    const posts: IPost[] = await response.json();
+    //const response = await fetch(`${process.env.API_DEV}/posts`);
+    const posts: IPost[] = []; //await response.json();
 
     const paths = posts.map((post) => ({
         params: {
@@ -35,8 +36,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async (context) => {
     const { id } = context.params as IParams
 
-    const response = await fetch(`${process.env.API_DEV}/posts/${id}`);
-    const post: IPost[] = await response.json();
+    //const response = await fetch(`${process.env.API_DEV}/posts/${id}`);
+    const post: IPost = postsMock["1"] //await response.json();
     return {
         props: {
             post
