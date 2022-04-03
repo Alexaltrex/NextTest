@@ -30,9 +30,15 @@ export const getStaticProps = async () => {
     }
 }
 
+interface IPostProps {
+    posts: IPost[]
+    subtitle: string
+}
+
+
 const Posts = (
-    {posts, subtitle}: {posts: any, subtitle: string}
-    ) => {
+    {posts, subtitle}: IPostProps
+) => {
     console.log(subtitle)
     console.log(posts)
 
@@ -46,17 +52,17 @@ const Posts = (
                 </h2>
                 {
                     posts ? (
-                    <div className={style.posts}>
-                        {
-                            posts.map(post => (
-                                <div key={post.id} className={style.post}>
-                                    {/*<p className={style.title}>{post.title}</p>*/}
-                                    <Link href={`/posts/${post.id}`}><a>{post.title}</a></Link>
-                                    {/*<p className={style.text}>{post.text}</p>*/}
-                                </div>
-                            ))
-                        }
-                    </div>
+                        <div className={style.posts}>
+                            {
+                                posts.map(post => (
+                                    <div key={post.id} className={style.post}>
+                                        {/*<p className={style.title}>{post.title}</p>*/}
+                                        <Link href={`/posts/${post.id}`}><a>{post.title}</a></Link>
+                                        {/*<p className={style.text}>{post.text}</p>*/}
+                                    </div>
+                                ))
+                            }
+                        </div>
                     ) : (
                         <div>no posts</div>
                     )
