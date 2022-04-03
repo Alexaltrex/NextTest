@@ -5,7 +5,7 @@ const Index: NextPage = () => {
     return (
         <MainLayout>
             <div>
-                <h1>Home</h1>
+                <h1>Home Update</h1>
             </div>
         </MainLayout>
     )
