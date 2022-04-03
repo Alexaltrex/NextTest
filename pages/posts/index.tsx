@@ -42,24 +42,24 @@ const Posts = (
                     {/*subtitle*/}
                     {subtitle}
                 </h2>
-                {
-                    posts ? (
-                    <div className={style.posts}>
-                        {/*posts*/}
-                        {
-                            posts.map(post => (
-                                <div key={post.id} className={style.post}>
-                                    {/*<p className={style.title}>{post.title}</p>*/}
-                                    <Link href={`/posts/${post.id}`}><a>{post.title}</a></Link>
-                                    {/*<p className={style.text}>{post.text}</p>*/}
-                                </div>
-                            ))
-                        }
-                    </div>
-                    ) : (
-                        <div>no posts</div>
-                    )
-                }
+                {/*{*/}
+                {/*    posts ? (*/}
+                {/*    <div className={style.posts}>*/}
+                {/*        /!*posts*!/*/}
+                {/*        {*/}
+                {/*            posts.map(post => (*/}
+                {/*                <div key={post.id} className={style.post}>*/}
+                {/*                    /!*<p className={style.title}>{post.title}</p>*!/*/}
+                {/*                    <Link href={`/posts/${post.id}`}><a>{post.title}</a></Link>*/}
+                {/*                    /!*<p className={style.text}>{post.text}</p>*!/*/}
+                {/*                </div>*/}
+                {/*            ))*/}
+                {/*        }*/}
+                {/*    </div>*/}
+                {/*    ) : (*/}
+                {/*        <div>no posts</div>*/}
+                {/*    )*/}
+                {/*}*/}
             </div>
         </MainLayout>
     )
