@@ -17,8 +17,8 @@ export const getStaticProps = async () => {
     );
     const responseJSON = await response.json();
     const posts = responseJSON//.posts;
-    //const subtitle = String(process.env.SUBTITLE) ?? "Default Subtitle";
-    const subtitle = "Default Subtitle";
+    const subtitle = String(process.env.SUBTITLE) ?? "Default Subtitle";
+    //const subtitle = "Default Subtitle";
     //console.log(process.env.SUBTITLE)
     if (!posts) {
         return {
